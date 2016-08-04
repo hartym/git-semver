@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+from __future__ import absolute_import, print_function, unicode_literals
+
 import argparse
 import os
 import sys
@@ -42,7 +44,6 @@ def get_next_major_version(repo):
     return version.next_major()
 
 
-
 def main(args=None):
     parser = argparse.ArgumentParser()
 
@@ -51,10 +52,21 @@ def main(args=None):
     parser.add_argument('--next-major', '-M', dest='modifier', action='store_const', const=Version.next_major)
 
     options = parser.parse_args(args or sys.argv[1:])
-    repo = Repo(os.path.join(os.getcwd()))
+
+    try:
+        repo = Repo(os.path.join(os.getcwd()))
+    except:
+        print('fatal: Not a git repository (or any of the parent directories)', file=sys.stderr)
+        return 128
+
     version = get_current_version(repo)
+    if version is None:
+        print('No version found. Try creating a tag with your initial version, for example:')
+        print('  git tag -am 0.1.0 0.1.0')
+        return 1
 
     if options.modifier:
         version = options.modifier(version)
 
     print(version)
+    return 0
