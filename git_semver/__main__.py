@@ -8,14 +8,7 @@ from git import Repo
 from semantic_version import Version
 
 
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('command', type=str.lower, choices=('all', 'patch', 'minor', 'major'), nargs='?', default='patch')
-    options = parser.parse_args(sys.argv[1:])
-
-    repo = Repo(os.path.join(os.getcwd()))
-
+def get_current_version(repo):
     latest = None
     for tag in repo.tags:
         v = tag.name
@@ -31,19 +24,45 @@ def main():
         else:
             if v > latest:
                 latest = v
-
-    if options.command == 'all':
-        print('latest:', latest)
-        print('next major:', latest.next_major())
-        print('next minor:', latest.next_minor())
-        print('next patch:', latest.next_patch())
-    elif options.command == 'patch':
-        print(latest.next_patch())
-    elif options.command == 'minor':
-        print(latest.next_minor())
-    elif options.command == 'major':
-        print(latest.next_major())
+    return latest
 
 
+def get_next_patch_version(repo):
+    version = get_current_version(repo)
+    return version.next_patch()
 
 
+def get_next_minor_version(repo):
+    version = get_current_version(repo)
+    return version.next_minor()
+
+
+def get_next_major_version(repo):
+    version = get_current_version(repo)
+    return version.next_major()
+
+
+def main(args=None):
+    parser = argparse.ArgumentParser()
+
+    subparsers = parser.add_subparsers(dest='version')
+    subparsers.required = True
+
+    parser_current = subparsers.add_parser('current', help='Current version')
+    parser_current.set_defaults(get_version=get_current_version)
+
+    parser_current = subparsers.add_parser('next', help='Next version (increments patch number)')
+    parser_current.set_defaults(get_version=get_next_patch_version)
+
+    parser_current = subparsers.add_parser('next-minor', help='Next minor version')
+    parser_current.set_defaults(get_version=get_next_minor_version)
+
+    parser_current = subparsers.add_parser('next-major', help='Next major version')
+    parser_current.set_defaults(get_version=get_next_major_version)
+
+    options = parser.parse_args(args or sys.argv[1:])
+
+    repo = Repo(os.path.join(os.getcwd()))
+
+    version = options.get_version(repo)
+    print(version)
