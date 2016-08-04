@@ -4,7 +4,9 @@ git-semver
 Install
 :::::::
 
-    pip install git-semver
+.. code-block:: shell
+
+    (sudo) pip install git-semver
 
 Usage
 :::::
