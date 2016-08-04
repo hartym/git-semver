@@ -42,27 +42,19 @@ def get_next_major_version(repo):
     return version.next_major()
 
 
+
 def main(args=None):
     parser = argparse.ArgumentParser()
 
-    subparsers = parser.add_subparsers(dest='version')
-    subparsers.required = True
-
-    parser_current = subparsers.add_parser('current', help='Current version')
-    parser_current.set_defaults(get_version=get_current_version)
-
-    parser_current = subparsers.add_parser('next', help='Next version (increments patch number)')
-    parser_current.set_defaults(get_version=get_next_patch_version)
-
-    parser_current = subparsers.add_parser('next-minor', help='Next minor version')
-    parser_current.set_defaults(get_version=get_next_minor_version)
-
-    parser_current = subparsers.add_parser('next-major', help='Next major version')
-    parser_current.set_defaults(get_version=get_next_major_version)
+    parser.add_argument('--next-patch', '-p', dest='modifier', action='store_const', const=Version.next_patch)
+    parser.add_argument('--next-minor', '-m', dest='modifier', action='store_const', const=Version.next_minor)
+    parser.add_argument('--next-major', '-M', dest='modifier', action='store_const', const=Version.next_major)
 
     options = parser.parse_args(args or sys.argv[1:])
-
     repo = Repo(os.path.join(os.getcwd()))
+    version = get_current_version(repo)
 
-    version = options.get_version(repo)
+    if options.modifier:
+        version = options.modifier(version)
+
     print(version)
