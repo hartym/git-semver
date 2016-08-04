@@ -38,6 +38,6 @@ Simple release process using git-semver
 
     git semver -p > version.txt
     git add version.txt
-    git commir -m 'Release: '`cat version.txt`
+    git commit -m 'Release: '`cat version.txt`
     git tag -am `cat version.txt` `cat version.txt`
     git push origin --tags
