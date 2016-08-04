@@ -24,6 +24,6 @@ setup(
     include_package_data = True,
     extras_require = {'dev': []},
     entry_points = {'console_scripts': ['git-semver=git_semver.__main__:main']},
-    url = '',
-    download_url = ''.format(version=version),
+    url = 'https://github.com/hartym/git-semver',
+    download_url = 'https://github.com/hartym/git-semver/archive/{version}.tar.gz'.format(version=version),
 )
