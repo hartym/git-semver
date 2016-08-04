@@ -1,14 +1,14 @@
 # git-semver (see github.com/python-edgy/project)
 
-name = 'git-semver'
+name = 'git_semver'
 description = 'Semantic versions management integrated to git.'
 license = 'Apache License, Version 2.0'
 
 url = ''
 download_url = ''
 
-author = ''
-author_email = ''
+author = 'Romain Dorgueil'
+author_email = 'romain@dorgueil.net'
 
 enable_features = {
     'pylint',
@@ -18,15 +18,18 @@ enable_features = {
     'pytest',
 }
 
+install_requires = [
+    'semantic-version >=2.5,<2.6',
+    'GitPython >=2.0,<2.1',
+]
+
 extras_require = {
     'dev': [
-        'coverage >=4.0,<4.2',
-        'mock >=2.0,<2.1',
-        'nose >=1.3,<1.4',
-        'pylint >=1.6,<1.7',
-        'pytest >=2.9,<2.10',
-        'pytest-cov >=2.3,<2.4',
-        'sphinx',
-        'sphinx_rtd_theme',
-    ],
+    ]
+}
+
+entry_points = {
+    'console_scripts': [
+        'git-semver=git_semver.__main__:main'
+    ]
 }

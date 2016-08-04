@@ -1,0 +1,11 @@
+*.egg-info
+*.pyc
+*.swp
+/.cache
+/.coverage
+/.idea
+/.python*-*
+/build
+/dist
+/htmlcov
+/pylint.html
