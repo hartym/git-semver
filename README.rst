@@ -9,23 +9,22 @@ Install
 Usage
 :::::
 
-    $ git semver -h
-    usage: git-semver [-h] [--next-patch] [--next-minor] [--next-major]
-
-    optional arguments:
-      -h, --help        show this help message and exit
-      --next-patch, -p
-      --next-minor, -m
-      --next-major, -M
+.. code-block:: shell
 
     $ git semver
     0.1.0
 
+.. code-block:: shell
+
     $ git semver --next-patch
     0.1.1
 
+.. code-block:: shell
+
     $ git semver --next-minor
     0.2.0
+
+.. code-block:: shell
 
     $ git semver --next-major
     1.0.0
