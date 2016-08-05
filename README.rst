@@ -1,6 +1,19 @@
 git-semver
 ==========
 
+.. image:: https://travis-ci.org/hartym/git-semver.svg?branch=master
+    :target: https://travis-ci.org/hartym/project
+    :alt: Continuous Integration Status
+
+.. image:: https://coveralls.io/repos/github/hartym/git-semver/badge.svg?branch=master
+    :target: https://coveralls.io/github/hartym/project?branch=master
+    :alt: Coverage Status
+
+.. image:: https://readthedocs.org/projects/git-semver/badge/?version=latest
+    :target: http://git-semver.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
+
+
 Install
 :::::::
 
