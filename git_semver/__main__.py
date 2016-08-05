@@ -29,21 +29,6 @@ def get_current_version(repo):
     return latest
 
 
-def get_next_patch_version(repo):
-    version = get_current_version(repo)
-    return version.next_patch()
-
-
-def get_next_minor_version(repo):
-    version = get_current_version(repo)
-    return version.next_minor()
-
-
-def get_next_major_version(repo):
-    version = get_current_version(repo)
-    return version.next_major()
-
-
 def main(args=None):
     parser = argparse.ArgumentParser()
 
