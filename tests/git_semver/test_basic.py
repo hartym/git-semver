@@ -39,8 +39,8 @@ def _git_tag_version(version):
 
 def _git_init_create_version(version='3.2.1'):
     os.system('git init')
-    os.system('git config --global user.email "tests@example.com"')
-    os.system('git config --global user.name "Py Test"')
+    os.system('git config user.email "tests@example.com"')
+    os.system('git config user.name "Py Test"')
     _git_tag_version(version)
 
 @pytest.mark.parametrize('arg', ['--next-patch', '-p'])
