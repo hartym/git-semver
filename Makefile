@@ -1,7 +1,7 @@
 # This file has been auto-generated.
 # All changes will be lost, see Projectfile.
 #
-# Updated at 2016-08-04 19:06:31.440086
+# Updated at 2016-08-05 10:51:05.200404
 
 PYTHON ?= $(shell which python)
 PYTHON_BASENAME ?= $(shell basename $(PYTHON))
@@ -11,8 +11,12 @@ QUICK ?=
 VIRTUAL_ENV ?= .virtualenv-$(PYTHON_BASENAME)
 PIP ?= $(VIRTUAL_ENV)/bin/pip
 PYTEST_OPTIONS ?= --capture=no --cov=git_semver --cov-report html
+SPHINX_OPTS ?= 
+SPHINX_BUILD ?= $(VIRTUAL_ENV)/bin/sphinx-build
+SPHINX_SOURCEDIR ?= doc
+SPHINX_BUILDDIR ?= $(SPHINX_SOURCEDIR)/_build
 
-.PHONY: clean install install-dev lint test
+.PHONY: clean doc install install-dev lint test
 
 # Installs the local project dependencies.
 install: $(VIRTUAL_ENV)
@@ -42,3 +46,6 @@ lint: install-dev
 
 test: install-dev
 	$(VIRTUAL_ENV)/bin/py.test $(PYTEST_OPTIONS) tests
+
+doc: install-dev
+	$(SPHINX_BUILD) -b html -D latex_paper_size=a4 $(SPHINX_OPTS) $(SPHINX_SOURCEDIR) $(SPHINX_BUILDDIR)/html
