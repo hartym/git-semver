@@ -21,8 +21,8 @@ Install
 
     (sudo) pip install git-semver
 
-Usage
-:::::
+Simple usage
+::::::::::::
 
 .. code-block:: shell
 
@@ -43,14 +43,10 @@ Usage
 
     $ git semver --next-major
     1.0.0
-    
-Simple release process using git-semver
-:::::::::::::::::::::::::::::::::::::::
 
-.. code-block:: shell
 
-    git semver -p > version.txt
-    git add version.txt
-    git commit -m 'Release: '`cat version.txt`
-    git tag -am `cat version.txt` `cat version.txt`
-    git push origin --tags
+Example release process
+:::::::::::::::::::::::
+
+See http://rdc.li/release
+
