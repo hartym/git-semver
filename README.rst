@@ -2,11 +2,11 @@ git-semver
 ==========
 
 .. image:: https://travis-ci.org/hartym/git-semver.svg?branch=master
-    :target: https://travis-ci.org/hartym/project
+    :target: https://travis-ci.org/hartym/git-semver
     :alt: Continuous Integration Status
 
 .. image:: https://coveralls.io/repos/github/hartym/git-semver/badge.svg?branch=master
-    :target: https://coveralls.io/github/hartym/project?branch=master
+    :target: https://coveralls.io/github/hartym/git-semver?branch=master
     :alt: Coverage Status
 
 .. image:: https://readthedocs.org/projects/git-semver/badge/?version=latest
