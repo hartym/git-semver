@@ -50,3 +50,7 @@ Example release process
 
 See http://rdc.li/release
 
+
+----
+
+Made with ♥ by `Romain Dorgueil <https://twitter.com/rdorgueil>`_ and `contributors <https://github.com/hartym/git-semver/graphs/contributors>`_.
