@@ -10,13 +10,16 @@ def read(filename, flt=None):
         content = f.read().strip()
         return flt(content) if callable(flt) else content
 
-version = read('version.txt')
+try:
+    version = read('version.txt')
+except:
+    version = 'dev'
 
 setup(
     name = 'git_semver',
     description = 'Semantic versions management integrated to git.',
     license = 'Apache License, Version 2.0',
-    install_requires = ['semantic-version >=2.5,<2.6', 'GitPython >=2.0,<2.1'],
+    install_requires = ['semantic-version >=2.6,<2.7', 'GitPython >=2.1,<2.2'],
     version = version,
     long_description = read('README.rst'),
     classifiers = read('classifiers.txt', tolines),

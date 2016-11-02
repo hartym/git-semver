@@ -1,7 +1,7 @@
 # This file has been auto-generated.
 # All changes will be lost, see Projectfile.
 #
-# Updated at 2016-08-05 10:51:05.200404
+# Updated at 2016-11-02 07:37:41.714170
 
 PYTHON ?= $(shell which python)
 PYTHON_BASENAME ?= $(shell basename $(PYTHON))
@@ -10,6 +10,7 @@ PYTHON_REQUIREMENTS_DEV_FILE ?= requirements-dev.txt
 QUICK ?= 
 VIRTUAL_ENV ?= .virtualenv-$(PYTHON_BASENAME)
 PIP ?= $(VIRTUAL_ENV)/bin/pip
+PYTEST ?= $(VIRTUAL_ENV)/bin/pytest
 PYTEST_OPTIONS ?= --capture=no --cov=git_semver --cov-report html
 SPHINX_OPTS ?= 
 SPHINX_BUILD ?= $(VIRTUAL_ENV)/bin/sphinx-build
@@ -45,7 +46,7 @@ lint: install-dev
 	$(VIRTUAL_ENV)/bin/pylint --py3k git_semver -f html > pylint.html
 
 test: install-dev
-	$(VIRTUAL_ENV)/bin/py.test $(PYTEST_OPTIONS) tests
+	$(PYTEST) $(PYTEST_OPTIONS) tests
 
 doc: install-dev
 	$(SPHINX_BUILD) -b html -D latex_paper_size=a4 $(SPHINX_OPTS) $(SPHINX_SOURCEDIR) $(SPHINX_BUILDDIR)/html

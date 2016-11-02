@@ -37,11 +37,13 @@ def _git_tag_version(version):
     os.system('git commit --allow-empty -m "release: {}"'.format(version))
     os.system('git tag -am {0} {0}'.format(version))
 
+
 def _git_init_create_version(version='3.2.1'):
     os.system('git init')
     os.system('git config user.email "tests@example.com"')
     os.system('git config user.name "Py Test"')
     _git_tag_version(version)
+
 
 @pytest.mark.parametrize('arg', ['--next-patch', '-p'])
 @pytest.mark.parametrize('version', ['v.3.2.1', 'v3.2.1', '3.2.1', ])
@@ -71,6 +73,7 @@ def test_major(tmpdir, capsys, arg, version):
     out, err = capsys.readouterr()
     assert out == '4.0.0\n'
     assert err == ''
+
 
 def test_multiple_tags(tmpdir, capsys):
     _git_init_create_version('0.1.0')
