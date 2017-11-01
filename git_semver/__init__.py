@@ -1,4 +1,4 @@
-from git_semver import __version__
+from git_semver._version import __version__
 from semantic_version import Version as _Version
 
 
