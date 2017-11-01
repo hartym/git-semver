@@ -53,8 +53,10 @@ setup(
     include_package_data=True,
     install_requires=['GitPython (>= 2.1, < 2.2)', 'semantic-version (>= 2.6, < 2.7)'],
     extras_require={
-        'dev':
-        ['coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)', 'sphinx (>= 1.6, < 2.0)']
+        'dev': [
+            'coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)',
+            'sphinx (>= 1.6, < 2.0)', 'yapf'
+        ]
     },
     entry_points={'console_scripts': ['git-semver=git_semver.__main__:main']},
     url='https://github.com/hartym/git-semver',
