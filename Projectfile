@@ -1,43 +1,27 @@
-# git-semver (see github.com/python-edgy/project)
+# git-semver
 
-name = 'git_semver'
-description = 'Semantic versions management integrated to git.'
-license = 'Apache License, Version 2.0'
+from medikit import require
 
-url = 'https://github.com/hartym/git-semver'
-download_url = 'https://github.com/hartym/git-semver/archive/{version}.tar.gz'
+git = require('git')
+make = require('make')
+pytest = require('pytest')
+python = require('python')
+sphinx = require('sphinx')
+yapf = require('yapf')
 
-author = 'Romain Dorgueil'
-author_email = 'romain@dorgueil.net'
-
-enable_features = {
-    'pylint',
-    'python',
-    'git',
-    'make',
-    'pytest',
-    'sphinx',
-}
-
-install_requires = [
+python.setup(
+    name='git_semver',
+    description='Semantic versions management integrated to git.',
+    license='Apache License, Version 2.0',
+    url='https://github.com/hartym/git-semver',
+    download_url='https://github.com/hartym/git-semver/archive/{version}.tar.gz',
+    author='Romain Dorgueil',
+    author_email='romain@dorgueil.net',
+    entry_points={
+        'console_scripts': ['git-semver=git_semver.__main__:main']
+    }
+)
+python.add_requirements(
     'semantic-version >=2.6,<2.7',
     'GitPython >=2.1,<2.2',
-]
-
-extras_require = {
-    'dev': [
-        'coverage >=4.2,<4.3',
-        'mock >=2.0,<2.1',
-        'pylint >=1.6,<1.7',
-        'pytest >=3.0,<3.1',
-        'pytest-cov >=2.4,<2.5',
-        'sphinx',
-        'sphinx_rtd_theme',
-    ]
-}
-
-entry_points = {
-    'console_scripts': [
-        'git-semver=git_semver.__main__:main'
-    ]
-}
+)

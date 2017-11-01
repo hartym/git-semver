@@ -9,28 +9,10 @@ import sys
 from git import Repo
 from semantic_version import Version
 
+from git_semver import get_current_version
+
 ERR_NO_VERSION_FOUND = 1
 ERR_NOT_A_REPO = 128
-
-
-def get_current_version(repo):
-    latest = None
-    for tag in repo.tags:
-        v = tag.name
-        if v.startswith('v.'):
-            v = v[2:]
-        elif v.startswith('v'):
-            v = v[1:]
-
-        v = Version.coerce(v)
-
-        if not latest:
-            latest = v
-        else:
-            if v > latest:
-                latest = v
-
-    return latest
 
 
 def main(args=None):
@@ -43,7 +25,7 @@ def main(args=None):
     options = parser.parse_args(sys.argv[1:] if args is None else args)
 
     try:
-        repo = Repo(os.path.join(os.getcwd()))
+        repo = Repo(os.getcwd())
     except:
         print('fatal: Not a git repository', file=sys.stderr)
         return ERR_NOT_A_REPO

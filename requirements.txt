@@ -1,1 +1,5 @@
 -e .
+gitdb2==2.0.3
+gitpython==2.1.7
+semantic-version==2.6.0
+smmap2==2.0.3

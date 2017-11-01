@@ -46,30 +46,42 @@ def _git_init_create_version(version='3.2.1'):
 
 
 @pytest.mark.parametrize('arg', ['--next-patch', '-p'])
-@pytest.mark.parametrize('version', ['v.3.2.1', 'v3.2.1', '3.2.1', ])
+@pytest.mark.parametrize('version', [
+    'v.3.2.1',
+    'v3.2.1',
+    '3.2.1',
+])
 def test_patch(tmpdir, capsys, arg, version):
     _git_init_create_version(version)
-    assert git_semver((arg,)) == 0
+    assert git_semver((arg, )) == 0
     out, err = capsys.readouterr()
     assert out == '3.2.2\n'
     assert err == ''
 
 
 @pytest.mark.parametrize('arg', ['--next-minor', '-m'])
-@pytest.mark.parametrize('version', ['v.3.2.1', 'v3.2.1', '3.2.1', ])
+@pytest.mark.parametrize('version', [
+    'v.3.2.1',
+    'v3.2.1',
+    '3.2.1',
+])
 def test_minor(tmpdir, capsys, arg, version):
     _git_init_create_version(version)
-    assert git_semver((arg,)) == 0
+    assert git_semver((arg, )) == 0
     out, err = capsys.readouterr()
     assert out == '3.3.0\n'
     assert err == ''
 
 
 @pytest.mark.parametrize('arg', ['--next-major', '-M'])
-@pytest.mark.parametrize('version', ['v.3.2.1', 'v3.2.1', '3.2.1', ])
+@pytest.mark.parametrize('version', [
+    'v.3.2.1',
+    'v3.2.1',
+    '3.2.1',
+])
 def test_major(tmpdir, capsys, arg, version):
     _git_init_create_version(version)
-    assert git_semver((arg,)) == 0
+    assert git_semver((arg, )) == 0
     out, err = capsys.readouterr()
     assert out == '4.0.0\n'
     assert err == ''
