@@ -1,3 +1,4 @@
+from git_semver import __version__
 from semantic_version import Version as _Version
 
 
