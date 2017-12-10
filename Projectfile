@@ -22,6 +22,6 @@ python.setup(
     }
 )
 python.add_requirements(
-    'semantic-version >=2.6,<2.7',
-    'GitPython >=2.1,<2.2',
+    'semantic-version ~=2.6.0',
+    'GitPython ~=2.1.7',
 )

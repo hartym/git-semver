@@ -51,7 +51,7 @@ setup(
     classifiers=classifiers,
     packages=find_packages(exclude=['ez_setup', 'example', 'test']),
     include_package_data=True,
-    install_requires=['GitPython (>= 2.1, < 2.2)', 'semantic-version (>= 2.6, < 2.7)'],
+    install_requires=['GitPython (~= 2.1.7)', 'semantic-version (~= 2.6.0)'],
     extras_require={
         'dev': [
             'coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)',
