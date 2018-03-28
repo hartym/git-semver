@@ -24,7 +24,7 @@ MEDIKIT ?= $(PYTHON) -m medikit
 MEDIKIT_UPDATE_OPTIONS ?= 
 MEDIKIT_VERSION ?= 0.5.18
 
-.PHONY: $(SPHINX_SOURCEDIR) clean format help install install-dev medikit quick test update update-requirements
+.PHONY: $(SPHINX_SOURCEDIR) clean format help install install-dev medikit quick release test update update-requirements
 
 install: .medikit/install   ## Installs the project.
 .medikit/install: $(PYTHON_REQUIREMENTS_FILE) setup.py
@@ -70,6 +70,9 @@ $(SPHINX_SOURCEDIR): install-dev  ##
 format: install-dev  ## Reformats the whole python codebase using yapf.
 	$(YAPF) $(YAPF_OPTIONS) .
 	$(YAPF) $(YAPF_OPTIONS) Projectfile
+
+release: medikit  ## Runs the "release" pipeline.
+	$(MEDIKIT) pipeline release start
 
 medikit:   # Checks installed medikit version and updates it if it is outdated.
 	@$(PYTHON) -c 'import medikit, sys; from packaging.version import Version; sys.exit(0 if Version(medikit.__version__) >= Version("$(MEDIKIT_VERSION)") else 1)' || $(PYTHON) -m pip install -U "medikit>=$(MEDIKIT_VERSION)"

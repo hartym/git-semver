@@ -25,3 +25,16 @@ python.add_requirements(
     'semantic-version ~=2.6.0',
     'GitPython ~=2.1.7',
 )
+
+
+# Pipelines
+@listen(make.on_generate)
+def on_make_generate_pipelines(event):
+    # Releases
+    event.makefile.add_target(
+        'release',
+        '$(MEDIKIT) pipeline release start',
+        deps=('medikit', ),
+        phony=True,
+        doc='Runs the "release" pipeline.'
+    )
