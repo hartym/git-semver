@@ -2,7 +2,7 @@
 *.iml
 *.pyc
 *.swp
-/.medikit-pipeline
+/.medikit
 /.release
 /.cache
 /.coverage
