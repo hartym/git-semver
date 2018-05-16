@@ -17,9 +17,7 @@ python.setup(
     download_url='https://github.com/hartym/git-semver/archive/{version}.tar.gz',
     author='Romain Dorgueil',
     author_email='romain@dorgueil.net',
-    entry_points={
-        'console_scripts': ['git-semver=git_semver.__main__:main']
-    }
+    entry_points={'console_scripts': ['git-semver=git_semver.__main__:main']}
 )
 python.add_requirements(
     'semantic-version ~=2.6.0',
