@@ -2,27 +2,26 @@
 
 from medikit import require
 
-git = require('git')
-make = require('make')
-pytest = require('pytest')
-python = require('python')
-sphinx = require('sphinx')
-yapf = require('yapf')
+git = require("git")
+make = require("make")
+pytest = require("pytest")
+python = require("python")
+sphinx = require("sphinx")
+
+# Adds auto-formatting for python code
+require("format").using("black", "isort")
 
 python.setup(
-    name='git_semver',
-    description='Semantic versions management integrated to git.',
-    license='Apache License, Version 2.0',
-    url='https://github.com/hartym/git-semver',
-    download_url='https://github.com/hartym/git-semver/archive/{version}.tar.gz',
-    author='Romain Dorgueil',
-    author_email='romain@dorgueil.net',
-    entry_points={'console_scripts': ['git-semver=git_semver.__main__:main']}
+    name="git_semver",
+    description="Semantic versions management integrated to git.",
+    license="Apache License, Version 2.0",
+    url="https://github.com/hartym/git-semver",
+    download_url="https://github.com/hartym/git-semver/archive/{version}.tar.gz",
+    author="Romain Dorgueil",
+    author_email="romain@dorgueil.net",
+    entry_points={"console_scripts": ["git-semver=git_semver.__main__:main"]},
 )
-python.add_requirements(
-    'semantic-version ~=2.6.0',
-    'GitPython ~=2.1.7',
-)
+python.add_requirements("semantic-version ~=2.6.0", "GitPython ~=2.1.7")
 
 
 # Pipelines
@@ -30,9 +29,12 @@ python.add_requirements(
 def on_make_generate_pipelines(event):
     # Releases
     event.makefile.add_target(
-        'release',
-        '$(MEDIKIT) pipeline release start',
-        deps=('medikit', ),
+        "release",
+        "$(MEDIKIT) pipeline release start",
+        deps=("medikit",),
         phony=True,
-        doc='Runs the "release" pipeline.'
+        doc='Runs the "release" pipeline.',
     )
+
+
+# vim: ft=python:
