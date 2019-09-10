@@ -12,12 +12,14 @@ def get_current_version(repo, Version=_Version):
         elif v.startswith("v"):
             v = v[1:]
 
-        v = Version.coerce(v, partial=True)
+        try:
+            v = Version(v)
+        except ValueError:
+            # Could not parse ...
+            # Maybe a prerelease which is not supported anymore by latest semantic_version package.
+            continue
 
-        if not latest:
+        if not latest or v > latest:
             latest = v
-        else:
-            if v > latest:
-                latest = v
 
     return latest
