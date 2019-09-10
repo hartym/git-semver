@@ -4,8 +4,8 @@ import os
 
 import pytest
 
-from git_semver.__main__ import ERR_NO_VERSION_FOUND, ERR_NOT_A_REPO
-from git_semver.__main__ import main as git_semver
+from git_semver.constants import ERR_NO_VERSION_FOUND, ERR_NOT_A_REPO
+from git_semver.main import main as git_semver
 
 
 @pytest.yield_fixture()

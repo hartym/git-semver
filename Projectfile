@@ -21,7 +21,7 @@ python.setup(
     author_email="romain@dorgueil.net",
     entry_points={"console_scripts": ["git-semver=git_semver.__main__:main"]},
 )
-python.add_requirements("semantic-version ~=2.6.0", "GitPython ~=2.1.7")
+python.add_requirements("semantic-version ~=2.8", "GitPython ~=2.1")
 
 
 # Pipelines

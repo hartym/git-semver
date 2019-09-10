@@ -2,12 +2,12 @@
 *.iml
 *.pyc
 *.swp
-/.medikit
-/.release
 /.cache
 /.coverage
 /.idea
-/.python*-*
+/.medikit
+/.release
+/.vscode
 /build
 /dist
 /docs/_build
