@@ -40,7 +40,7 @@ else ifneq ($(QUICK),)
 	@printf "Skipping \033[36m%s\033[0m because \033[36m$$QUICK\033[0m is not empty.\n" $(target)
 else
 	@printf "Applying \033[36m%s\033[0m target...\n" $(target)
-	$(PIP) install $(PIP_INSTALL_OPTIONS) -U "pip ~=19.0" wheel
+	$(PIP) install $(PIP_INSTALL_OPTIONS) -U "pip ~=19.0,<19.2" wheel
 	$(PIP) install $(PIP_INSTALL_OPTIONS) -U $(PYTHON_REQUIREMENTS_INLINE) -r $(PYTHON_REQUIREMENTS_FILE)
 	@mkdir -p .medikit; touch $@
 endif
@@ -58,7 +58,7 @@ else ifneq ($(QUICK),)
 	@printf "Skipping \033[36m%s\033[0m because \033[36m$$QUICK\033[0m is not empty.\n" $(target)
 else
 	@printf "Applying \033[36m%s\033[0m target...\n" $(target)
-	$(PIP) install $(PIP_INSTALL_OPTIONS) -U "pip ~=19.0" wheel
+	$(PIP) install $(PIP_INSTALL_OPTIONS) -U "pip ~=19.0,<19.2" wheel
 	$(PIP) install $(PIP_INSTALL_OPTIONS) -U $(PYTHON_REQUIREMENTS_DEV_INLINE) -r $(PYTHON_REQUIREMENTS_DEV_FILE)
 	@mkdir -p .medikit; touch $@
 endif
@@ -80,7 +80,7 @@ release: medikit  ## Runs the "release" pipeline.
 	$(MEDIKIT) pipeline release start
 
 medikit:   # Checks installed medikit version and updates it if it is outdated.
-	@$(PYTHON) -c 'import medikit, pip, sys; from packaging.version import Version; sys.exit(0 if (Version(medikit.__version__) >= Version("$(MEDIKIT_VERSION)")) and (Version(pip.__version__) < Version("10")) else 1)' || $(PYTHON) -m pip install -U "pip ~=19.0" "medikit>=$(MEDIKIT_VERSION)"
+	@$(PYTHON) -c 'import medikit, pip, sys; from packaging.version import Version; sys.exit(0 if (Version(medikit.__version__) >= Version("$(MEDIKIT_VERSION)")) and (Version(pip.__version__) < Version("10")) else 1)' || $(PYTHON) -m pip install -U "pip ~=19.0,<19.2" "medikit>=$(MEDIKIT_VERSION)"
 
 update: medikit  ## Update project artifacts using medikit.
 	$(MEDIKIT) update $(MEDIKIT_UPDATE_OPTIONS)
